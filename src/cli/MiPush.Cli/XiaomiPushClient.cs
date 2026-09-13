@@ -16,16 +16,24 @@ internal sealed class XiaomiPushClient(HttpClient httpClient)
         CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(config.PackageName))
-            throw new InvalidOperationException("尚未配置 package name。请先运行 config init。 ");
+            throw new InvalidOperationException("尚未配置 package name。请先运行 config init。");
         if (string.IsNullOrWhiteSpace(appSecret))
-            throw new InvalidOperationException("缺少 AppSecret。设置 MIPUSH_APP_SECRET 或使用 --app-secret。 ");
+            throw new InvalidOperationException("缺少 AppSecret。设置 MIPUSH_APP_SECRET 或使用 --app-secret。");
+        if (string.IsNullOrWhiteSpace(regId))
+            throw new ArgumentException("RegID 不能为空。", nameof(regId));
+        if (string.IsNullOrWhiteSpace(title) || title.Length >= 50)
+            throw new ArgumentException("标题不能为空且长度必须小于 50 个字符。", nameof(title));
+        if (string.IsNullOrWhiteSpace(body) || body.Length >= 128)
+            throw new ArgumentException("正文不能为空且长度必须小于 128 个字符。", nameof(body));
 
         var fields = new Dictionary<string, string>
         {
             ["restricted_package_name"] = config.PackageName,
             ["registration_id"] = regId,
+            ["payload"] = body,
             ["title"] = title,
-            ["description"] = body
+            ["description"] = body,
+            ["extra.notify_effect"] = "1"
         };
 
         if (!string.IsNullOrWhiteSpace(channelId)) fields["extra.channel_id"] = channelId;
