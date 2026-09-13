@@ -10,6 +10,7 @@ fun credential(name: String): String =
 fun quoted(value: String): String = "\"" + value.replace("\\", "\\\\").replace("\"", "\\\"") + "\""
 
 val configuredPackageName = credential("MIPUSH_PACKAGE_NAME").ifBlank { "com.zy19970.mipushapp" }
+val miPushAar = file("libs/MiPush_SDK_Client.aar")
 
 android {
     namespace = "com.zy19970.mipushapp"
@@ -50,5 +51,9 @@ android {
 }
 
 dependencies {
-    add("mipushImplementation", files("libs/MiPush_SDK_Client.aar"))
+    if (miPushAar.exists()) {
+        add("mipushImplementation", files(miPushAar))
+    } else {
+        logger.lifecycle("Mi Push SDK AAR not found: ${miPushAar.absolutePath}. Stub builds remain available; mipush builds require the AAR.")
+    }
 }
