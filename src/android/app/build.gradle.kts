@@ -9,12 +9,14 @@ fun credential(name: String): String =
 
 fun quoted(value: String): String = "\"" + value.replace("\\", "\\\\").replace("\"", "\\\"") + "\""
 
+val configuredPackageName = credential("MIPUSH_PACKAGE_NAME").ifBlank { "com.zy19970.mipushapp" }
+
 android {
     namespace = "com.zy19970.mipushapp"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.zy19970.mipushapp"
+        applicationId = configuredPackageName
         minSdk = 23
         targetSdk = 36
         versionCode = 1
