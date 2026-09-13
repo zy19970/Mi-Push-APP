@@ -40,9 +40,12 @@ src/android/app/libs/MiPush_SDK_Client.aar
 在 `src/android` 下设置 Gradle 属性或环境变量：
 
 ```text
+MIPUSH_PACKAGE_NAME=你在小米开发者平台登记的包名
 MIPUSH_APP_ID=你的AppId
 MIPUSH_APP_KEY=你的AppKey
 ```
+
+`MIPUSH_PACKAGE_NAME` 不设置时默认使用 `com.zy19970.mipushapp`。真实安装包的包名必须和小米开发者平台登记值一致。
 
 构建真实 Mi Push 版本：
 
@@ -56,7 +59,7 @@ gradle :app:assembleMipushDebug
 gradle :app:assembleStubDebug
 ```
 
-安装 `mipushDebug` 后点击“注册/刷新”，注册成功的 RegID 会显示在主界面。
+安装 `mipushDebug` 后，应用会在主进程启动时自动注册 Mi Push；也可以在主界面点击“注册 / 刷新 RegID”。注册成功的 RegID 会显示在主界面。
 
 ### 3. .NET 10 CLI
 
@@ -64,7 +67,7 @@ gradle :app:assembleStubDebug
 cd src/cli/MiPush.Cli
 dotnet build
 
-dotnet run -- config init --package com.zy19970.mipushapp
+dotnet run -- config init --package 你在小米开发者平台登记的包名
 dotnet run -- device add phone "你的RegID"
 ```
 
@@ -91,8 +94,9 @@ CLI 已预留 `channel_id`、`template_id`、`template_param` 参数，以适配
 ## 当前里程碑
 
 - [x] 无自建服务器的总体架构
-- [x] Android Mi Push 注册骨架
+- [x] Android Mi Push 启动自动注册
 - [x] RegID 本地展示/复制
+- [x] Android 包名可配置
 - [x] .NET 10 直连发送 CLI
 - [x] 多设备 RegID 本地配置
 - [x] Channel / Template 参数预留
