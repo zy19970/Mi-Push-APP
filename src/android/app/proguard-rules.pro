@@ -1,2 +1,3 @@
-# Mi Push SDK official guidance requires NotificationClickedActivity to be kept.
+# Mi Push SDK keep rules.
 -keep class com.xiaomi.mipush.sdk.NotificationClickedActivity { *; }
+-keep class com.zy19970.mipushapp.MiPushReceiver { *; }
