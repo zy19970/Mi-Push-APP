@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi Push APP</string>
+    <string name="title">Mi Push APP</string>
+    <string name="subtitle">直接连接 Xiaomi Push，不需要自建服务器。</string>
+    <string name="status_initial">正在检查注册状态…</string>
+    <string name="status_not_registered">未获得 RegID（%1$s）</string>
+    <string name="status_registered">已获得 RegID（%1$s）</string>
+    <string name="registering">已发起注册，请稍后刷新。</string>
+    <string name="regid_placeholder">RegID 将显示在这里</string>
+    <string name="register">注册 / 刷新 RegID</string>
+    <string name="copy_regid">复制 RegID</string>
+    <string name="security_hint">AppSecret 不保存在手机 APK 中。请只把 AppSecret 配置在可信任的发送设备上。</string>
+    <string name="copied">RegID 已复制</string>
+    <string name="no_regid">当前还没有 RegID</string>
+</resources>
