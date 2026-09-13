@@ -26,7 +26,7 @@ jobs:
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '9.6.0'
+          gradle-version: '9.1.0'
       - name: Build Android stub flavor
         working-directory: src/android
         run: gradle --no-daemon :app:assembleStubDebug
